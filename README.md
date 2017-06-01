@@ -33,7 +33,7 @@ public void takePhotoNoCompress(View view) {
                 .format(new Date()) + ".png";
         File file = new File(Environment.getExternalStorageDirectory(), filename);
         mCurrentPhotoPath = file.getAbsolutePath();
-		  // 仅需改变这一行
+	     // 仅需改变这一行
         Uri fileUri = FileProvider7.getUriForFile(this, file);
 
         takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);
@@ -54,7 +54,7 @@ protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
 ### 示例二 安装apk
 
-```
+```java
 public void installApk(View view) {
     File file = new File(Environment.getExternalStorageDirectory(),
             "testandroid7-debug.apk");

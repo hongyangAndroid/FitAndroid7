@@ -3,12 +3,12 @@ apply plugin: 'com.novoda.bintray-release'//添加
 
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion "25.0.2"
+    compileSdkVersion 28
+    buildToolsVersion '28.0.3'
 
     defaultConfig {
-        minSdkVersion 7
-        targetSdkVersion 25
+        minSdkVersion 16
+        targetSdkVersion 28
         versionCode 1
         versionName "1.0"
     }
@@ -16,18 +16,18 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    provided 'com.android.support:appcompat-v7:25.3.1'
+    api fileTree(dir: 'libs', include: ['*.jar'])
+    compileOnly 'androidx.appcompat:appcompat:1.1.0'
 }
 
 //添加
 publish {
-    userOrg = 'hongyangandroid'//bintray.com用户名
-    groupId = 'com.zhy.base'//jcenter上的路径
+    userOrg = 'liukefu2020'//bintray.com用户名
+    groupId = 'com.mg.RxCustomizedImagePicker'//jcenter上的路径
     artifactId = 'fileprovider'//项目名称
     publishVersion = '1.0.0'//版本号
     desc = 'Oh hi, this is a nice description for a project, right?'//描述，不重要
-    website = 'https://github.com/hyman/basetools'//网站，不重要；尽量模拟github上的地址，例如我这样的；当然你有地址最好了
+    website = 'https://github.com/shijingsh/FitAndroid7'//网站，不重要；尽量模拟github上的地址，例如我这样的；当然你有地址最好了
 }
 
 // ./gradlew :librararyforfileprovdider:clean :librararyforfileprovdider:build bintrayUpload -PbintrayUser=hongyangandroid -PbintrayKey= -PdryRun=false

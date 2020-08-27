@@ -22,12 +22,12 @@ dependencies {
 
 //添加
 publish {
-    userOrg = 'hongyangandroid'//bintray.com用户名
-    groupId = 'com.zhy.base'//jcenter上的路径
+    userOrg = 'liukefu2020'//bintray.com用户名
+    groupId = 'com.mg.RxCustomizedImagePicker'//jcenter上的路径
     artifactId = 'fileprovider'//项目名称
     publishVersion = '1.0.0'//版本号
     desc = 'Oh hi, this is a nice description for a project, right?'//描述，不重要
-    website = 'https://github.com/hyman/basetools'//网站，不重要；尽量模拟github上的地址，例如我这样的；当然你有地址最好了
+    website = 'https://github.com/shijingsh/FitAndroid7'//网站，不重要；尽量模拟github上的地址，例如我这样的；当然你有地址最好了
 }
 
 // ./gradlew :librararyforfileprovdider:clean :librararyforfileprovdider:build bintrayUpload -PbintrayUser=hongyangandroid -PbintrayKey= -PdryRun=false

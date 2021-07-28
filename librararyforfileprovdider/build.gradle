@@ -22,11 +22,12 @@ dependencies {
 }
 
 
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
 
 
-
-def ossrhUsername = "liukefu"                   //在SonaType上申请的账号
-def ossrhPassword = "380177108&Lkf"             //在SonaType上申请的密码
+def ossrhUsername = properties.getProperty("ossrhUsername")    //在SonaType上申请的账号
+def ossrhPassword = properties.getProperty("ossrhPassword")    //在SonaType上申请的密码
 
 def PUBLISH_GROUP_ID = 'com.github.shijingsh' //这里可以不是直接申请时候的groupId只要开头是就可以
 
@@ -60,7 +61,7 @@ uploadArchives {
 
             pom.project {
                 name 'fileprovider'
-                packaging 'jar' //我这里发布的是安卓的包，所有写的aar
+                packaging 'aar' //我这里发布的是安卓的包，所以写的aar
                 // optionally artifactId can be defined here
                 description 'One line of code completes Android 7 fileprovider adaptation~'
                 url 'https://github.com/shijingsh/FitAndroid7'

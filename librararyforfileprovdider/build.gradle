@@ -1,6 +1,7 @@
 apply plugin: 'com.android.library'
-apply plugin: 'com.novoda.bintray-release'//添加
-
+//apply plugin: 'com.novoda.bintray-release'//添加
+apply plugin: 'maven'
+apply plugin: 'signing'
 
 android {
     compileSdkVersion 28
@@ -20,14 +21,71 @@ dependencies {
     compileOnly 'androidx.appcompat:appcompat:1.1.0'
 }
 
-//添加
-publish {
-    userOrg = 'liukefu2020'//bintray.com用户名
-    groupId = 'com.mg.RxCustomizedImagePicker'//jcenter上的路径
-    artifactId = 'fileprovider'//项目名称
-    publishVersion = '1.0.0'//版本号
-    desc = 'Oh hi, this is a nice description for a project, right?'//描述，不重要
-    website = 'https://github.com/shijingsh/FitAndroid7'//网站，不重要；尽量模拟github上的地址，例如我这样的；当然你有地址最好了
+
+
+
+
+def ossrhUsername = "liukefu"                   //在SonaType上申请的账号
+def ossrhPassword = "380177108&Lkf"             //在SonaType上申请的密码
+
+def PUBLISH_GROUP_ID = 'com.github.shijingsh' //这里可以不是直接申请时候的groupId只要开头是就可以
+
+def PUBLISH_ARTIFACT_ID = "fileprovider"      //引用库的artifactId
+
+def PUBLISH_VERSION = "1.1.0" //这个是直接获取的库gradle里配置好的版本号，不用到处修改版本号，只需要维护一份就可以。
+
+//签名
+signing {
+    required { gradle.taskGraph.hasTask("uploadArchives") }
+    sign configurations.archives
 }
 
-// ./gradlew :librararyforfileprovdider:clean :librararyforfileprovdider:build bintrayUpload -PbintrayUser=hongyangandroid -PbintrayKey= -PdryRun=false
+uploadArchives {
+    repositories {
+        mavenDeployer {
+
+            beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+
+            repository(url: "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/") {
+                authentication(userName: ossrhUsername, password: ossrhPassword)
+            }
+
+            snapshotRepository(url: "https://s01.oss.sonatype.org/content/repositories/snapshots/") {
+                authentication(userName: ossrhUsername, password: ossrhPassword)
+            }
+
+            pom.groupId = PUBLISH_GROUP_ID
+            pom.artifactId = PUBLISH_ARTIFACT_ID
+            pom.version = PUBLISH_VERSION
+
+            pom.project {
+                name 'fileprovider'
+                packaging 'jar' //我这里发布的是安卓的包，所有写的aar
+                // optionally artifactId can be defined here
+                description 'One line of code completes Android 7 fileprovider adaptation~'
+                url 'https://github.com/shijingsh/FitAndroid7'
+
+                scm {
+                    connection 'https://github.com/shijingsh/FitAndroid7'
+                    developerConnection 'scm:git:git@github.com:shijingsh/FitAndroid7.git'
+                    url 'https://github.com/shijingsh'
+                }
+
+                licenses {
+                    license {
+                        name 'The Apache License, Version 2.0'
+                        url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    }
+                }
+
+                developers {
+                    developer {
+                        id 'liukefu'
+                        name 'liukefu'
+                        email 'liukefu2050@sina.com'
+                    }
+                }
+            }
+        }
+    }
+}

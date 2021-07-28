@@ -1,6 +1,8 @@
 #本项目为更新FitAndroid7
     原项目地址：
     https://github.com/hongyangAndroid/FitAndroid7
+
+    One line of code completes Android 7 fileprovider adaptation~
 # FitAndroid7
 
 一行代码完成Android 7 FileProvider适配~
@@ -13,7 +15,7 @@
 ## 使用
 
 ```
-compile 'com.mg.RxCustomizedImagePicker:fileprovider:1.0.0'
+compile 'com.mg.RxCustomizedImagePicker:1.1.0'
 ```
 
 通过FileProvider7这个类完成uri的获取即可，例如：

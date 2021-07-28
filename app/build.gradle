@@ -25,6 +25,6 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     implementation 'androidx.appcompat:appcompat:1.1.0'
-    implementation 'com.mg.RxCustomizedImagePicker:fileprovider:1.0.0'
+    implementation 'com.github.shijingsh:fileprovider:1.1.0'
     testImplementation 'junit:junit:4.12'
 }

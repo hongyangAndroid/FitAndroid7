@@ -29,8 +29,8 @@ public class FileProvider7 {
 
 
     public static Uri getUriForFile24(Context context, File file) {
-        Uri fileUri = android.support.v4.content.FileProvider.getUriForFile(context,
-                context.getPackageName() + ".android7.fileprovider",
+        Uri fileUri = androidx.core.content.FileProvider.getUriForFile(context,
+                context.getPackageName() + ".android7.mg.fileprovider",
                 file);
         return fileUri;
     }
